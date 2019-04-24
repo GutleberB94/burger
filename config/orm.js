@@ -10,18 +10,18 @@ var orm = {
             console.log(result);
         });
     },
-    insertOne: function (table, cols, vals) {
+    insertOne: function (table, col1, cal2, val1, val2) {
         var queryString = "INSERT INTO ?? (??, ??) VALUES (??, ??)";
         console.log(queryString);
-        connection.query(queryString, [table, cols, vals], function (err, result) {
+        connection.query(queryString, [table, col1, cal2, val1, val2], function (err, result) {
             if (err) throw err;
             console.log(result);
         });
     },
-    insertOne: function (table, cols, vals, id) {
-        var queryString = "UPDATE ?? SET (?? = ??, ?? = ??) WHERE (??)";
+    updateOne: function (table, val1, val2, id) {
+        var queryString = "UPDATE ?? SET (burger_name = ??, devoured = ??) WHERE (??)";
         console.log(queryString);
-        connection.query(queryString, [table, cols, vals, id], function (err, result) {
+        connection.query(queryString, [table,val1, val2, id], function (err, result) {
             if (err) throw err;
             console.log(result);
             }
