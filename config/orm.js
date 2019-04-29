@@ -1,32 +1,85 @@
-var connection = require(".connection/");
+var connection = require('./connection.js');
 
+// Helper function for generating MySQL syntax
+function printQuestionMarks(num) {
+    var arr = [];
 
+    for (var i = 0; i < num; i++) {
+        arr.push("?");
+    }
+
+    return arr.toString();
+}
+
+// Helper function for generating My SQL syntax
+function objToSql(ob) {
+    var arr = [];
+
+    for (var key in ob) {
+        arr.push(key + "=" + ob[key]);
+    }
+
+    return arr.toString();
+}
+
+// Create the ORM object to perform SQL queries
 var orm = {
+    // Function that returns all table entries
+    selectAll: function (tableInput, callback) {
 
-    selectAll: function () {
-        var queryString = "SELECT * FROM burgers";
+        var queryString = "SELECT * FROM " + tableInput + ";";
+
+
         connection.query(queryString, function (err, result) {
-            if (err) throw err;
-            console.log(result);
-        });
-    },
-    insertOne: function (table, col1, cal2, val1, val2) {
-        var queryString = "INSERT INTO ?? (??, ??) VALUES (??, ??)";
-        console.log(queryString);
-        connection.query(queryString, [table, col1, cal2, val1, val2], function (err, result) {
-            if (err) throw err;
-            console.log(result);
-        });
-    },
-    updateOne: function (table, val1, val2, id) {
-        var queryString = "UPDATE ?? SET (burger_name = ??, devoured = ??) WHERE (??)";
-        console.log(queryString);
-        connection.query(queryString, [table,val1, val2, id], function (err, result) {
-            if (err) throw err;
-            console.log(result);
+            if (err) {
+                throw err;
             }
-        );
+
+
+            callback(result);
+        });
+    },
+
+    insertOne: function (table, cols, vals, callbback) {
+
+        var queryString = "INSERT INTO " + table;
+
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+
+
+        connection.query(queryString, vals, function (err, result) {
+            if (err) {
+                throw err;
+            }
+
+            callback(result);
+        });
+    },
+
+    // Function that updates a single table entry
+    updateOne: function (table, objColVals, condition, callback) {
+
+        var queryString = "UPDATE " + table;
+
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+
+        connection.query(queryString, function (err, result) {
+            if (err) {
+                throw err;
+            }
+
+            callback(result);
+        });
     }
 };
 
+// Export the orm object for use in other modules
 module.exports = orm;
