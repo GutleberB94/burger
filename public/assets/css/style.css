@@ -2,3 +2,11 @@ body {
     background-color: lightblue;
     margin-bottom: 10%;
 }
+
+.burger-img {
+    text-align: center;
+}
+
+.add-a-burger {
+    text-align: center;
+}
