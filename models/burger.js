@@ -1,8 +1,25 @@
 var orm = require("../config/orm")
 
 
-orm.selectAll();
+var burger = {
 
-orm.selectOne();
+    selectAll: (callback) => {
+        orm.selectAll('burgers', (res) => {
+            callback(res);
+        });
+    },
 
-orm.updateOne();
+    insertOne: (cols, vals, callback) => {
+        orm.insertOne('burgers', cols, vals, (res) => {
+            callback(res);
+        });
+    },
+
+    updateOne: (objColVals, condition, callback) => {
+        orm.updateOne('burgers', objColVals, condition, (res) => {
+            callback(res);
+        });
+    }
+};
+
+module.exports = burger;
