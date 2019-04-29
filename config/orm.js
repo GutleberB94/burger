@@ -40,7 +40,7 @@ var orm = {
         });
     },
 
-    insertOne: function (table, cols, vals, callbback) {
+    insertOne: function (table, cols, vals, callback) {
 
         var queryString = "INSERT INTO " + table;
 

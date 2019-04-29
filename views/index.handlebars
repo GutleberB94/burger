@@ -2,39 +2,48 @@
 
 
 
-
-    <div class="col s6">
-        {{#each burgers}}
-        {{#unless this.devoured}}
-        <div>
-            <form action="/burgers/{{this.id}}?_method=PUT" method="POST">
-                <button type="submit" class='burgerAvailable'> {{this.burger_name}}</button>
-            </form>
-        </div>
-        {{/unless}}
-        {{/each}}
-    </div>
-
-    <div class="col s6">
-        {{#each burgers}}
-        {{#if this.devoured}}
-        <div class='burgerEaten'>
-            <div>
-                {{this.burger_name}}
+<div class="row">
+    <!-- Undevoured Burgers -->
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading" id="lefthead"><strong>New Burgers</strong></div>
+            <div class="panel-body">
+                <ul>
+                    {{#each burgers}}
+                    {{#unless devoured}}
+                    <span><strong> {{this.burger_name}} </strong></span>
+                    <button type="button" class="eat-burger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
+                        data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span>Devour!</button>
+                    <hr>
+                    {{/unless}}
+                    {{/each}}
+                </ul>
             </div>
         </div>
-        {{/if}}
-        {{/each}}
     </div>
-
-
-
-
-
-    <h2>Add A Burger</h2>
-    <div>
-        <form action="/burgers" method="POST">
-            <input type="text" id="name" name="burger_name" placeholder="Add a Burger">
-            <button type="submit" class="addBurgerButton">Add Burger</button>
-        </form>
+    <!-- Devoured Burgers -->
+    <div class="col-sm-6">
+        <div class="panel panel-default">
+            <div class="panel-heading" id=""><strong>Devoured Burgers</strong></div>
+            <div class="panel-body">
+                <ul>
+                    {{#each burgers}}
+                    {{#if devoured}}
+                    <span><strong> {{this.burger_name}} </strong></span>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
     </div>
+</div><!-- /row -->
+
+
+
+<h2>Add A Burger</h2>
+<div>
+    <form action="/api/burgers" method="POST">
+        <input type="text" id="name" name="burger_name" placeholder="Add a Burger">
+        <button type="submit" class="addBurger">Add Burger</button>
+    </form>
+</div>
