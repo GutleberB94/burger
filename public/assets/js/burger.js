@@ -22,18 +22,20 @@ $(() => {
         );
     });
 
-    $(".eat-burger").on("click", (event) => {
+    $("#eatbutton").on("click", (event) => {
 
         event.preventDefault();
         console.log("button clicked")
         var id = $(this).data("id");
 
-        // Send the DELETE request.
+        var newBurgerState = {
+            devoured: 1
+          };
+
+
         $.ajax("/api/burgers/" + id, {
-            type: "Put",
-            data: {
-                devoured: 1
-            }
+            type: "PUT",
+            data: newBurgerState
         }).then(() => {
             console.log("devoured burger", id);
             // Reload the page to get the updated list

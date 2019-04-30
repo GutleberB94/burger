@@ -22,7 +22,7 @@ router.post("/api/burgers", (req, res) => {
     ], [
         req.body.burger_name
     ], (result) => {
-        res.json({ id: result.insertId })
+       
         res.redirect('/');
     });
 });
