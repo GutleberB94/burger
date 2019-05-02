@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
     })
 });
 
-router.post("/api/burgers", (req, res) => {
+router.post("/", (req, res) => {
 
     burger.insertOne([
         "burger_name"
@@ -38,7 +38,6 @@ router.put("/api/burgers/:id", (req, res) => {
         return res.status(404).end();
       } else {
         res.status(200).end();
-        res.redirect('/');
       }
     });
   });
