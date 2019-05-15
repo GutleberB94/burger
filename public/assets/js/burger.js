@@ -26,7 +26,9 @@ $(() => {
 
         event.preventDefault();
         console.log("button clicked")
+        
         var id = $(this).data("id");
+        console.log(id)
 
         var newBurgerState = {
             devoured: 1
