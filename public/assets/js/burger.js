@@ -27,7 +27,7 @@ $(() => {
         event.preventDefault();
         console.log("button clicked")
         
-        var id = $(this).data("id");
+        var id = $(this).data("id");     // this is undefined for some reason
         console.log(id)
 
         var newBurgerState = {
