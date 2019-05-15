@@ -39,7 +39,7 @@ $(() => {
             type: "PUT",
             data: newBurgerState
         }).then(() => {
-            console.log("devoured burger", id);
+            console.log("devoured burger ", id);
             // Reload the page to get the updated list
             location.reload();
         }

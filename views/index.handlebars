@@ -12,8 +12,8 @@
                     {{#each burgers}}
                     {{#unless devoured}}
                     <span><strong> {{this.burger_name}} </strong></span>
-                    <button type="button" class="eat-burger btn btn-warning" id="eatbutton" data-id="{{this.id}}"
-                        data-newDevoured="{{devour}}"><span class="fa fa-cutlery"></span>Devour!</button>
+                    <button type="button" class="eat-burger btn btn-warning" id="eatbutton" data-id="{{this.id}}"><span
+                            class="fa fa-cutlery"></span>Devour!</button>
                     <hr>
                     {{/unless}}
                     {{/each}}
