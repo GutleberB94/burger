@@ -1,4 +1,4 @@
-$(() => {
+$(function() {
 
 
     $(".create-form").on("submit", (event) => {
@@ -22,13 +22,12 @@ $(() => {
         );
     });
 
-    $("#eatbutton").on("click", (event) => {
+    $(".eat-burger").on("click", function(event) {
 
         event.preventDefault();
         console.log("button clicked")
         
-        var id = $(this).data("id");     // this is undefined for some reason
-        console.log(id)
+        var id = $(this).data("id");
 
         var newBurgerState = {
             devoured: 1
